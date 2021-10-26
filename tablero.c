@@ -9,7 +9,7 @@ struct jugador {  //struct del jugador contiene monedero y poscicion en el juego
 };
 
 struct casilla {  //struct de las casillas del juego contiene una direccion para funciones para la implementacion de los efectos de las casillas
-    void (*funcion)(const struct casilla**, struct jugador*, int parametro);
+    void (*funcion)(const struct casilla**, struct jugador*, int );
     int parametro;
     char nombre[50];
 };
@@ -21,7 +21,7 @@ void mover(const struct casilla** T, struct jugador* J, int casillas){          
     }
     J->pos = (J->pos+casillas)%LARGO_TABLERO;
     //printf("pos final: %d\n",J->pos);
-    T[J->pos]->funcion(&T,&J,T[J->pos]->parametro);  
+    T[J->pos]->funcion(T,J,T[J->pos]->parametro);  
     /*probar al final, tener en cuanta que se hara un arreglo de struct tablero.*/}
 
 void ajuste_monedero(const struct casilla** T, struct jugador* J,int dinero){
