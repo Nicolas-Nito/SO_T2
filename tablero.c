@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #define LARGO_TABLERO 28
 
 struct jugador {  //struct del jugador contiene monedero y poscicion en el juego
@@ -9,37 +10,37 @@ struct jugador {  //struct del jugador contiene monedero y poscicion en el juego
 };
 
 struct casilla {  //struct de las casillas del juego contiene una direccion para funciones para la implementacion de los efectos de las casillas
-    void (*funcion)(const struct casilla**, struct jugador*, int );
+    void (*funcion)( struct casilla**, struct jugador*, int );
     int parametro;
     char nombre[50];
 };
 
-void mover(const struct casilla** T, struct jugador* J, int casillas){                        // funcion que mueve a un jugador por el tablero y activa la sgt casilla
+void mover( struct casilla** T, struct jugador* J, int casillas){                        // funcion que mueve a un jugador por el tablero y activa la sgt casilla
     //printf("pos inicial: %d\n",J->pos);
     if (J->pos+casillas/LARGO_TABLERO==1){ //se realisa una vuelta al tablero
         J->monedero=J->monedero+100;
     }
     J->pos = (J->pos+casillas)%LARGO_TABLERO;
     //printf("pos final: %d\n",J->pos);
-    T[J->pos]->funcion(T,J,T[J->pos]->parametro);  
+    //T[J->pos]->funcion(T,J,T[J->pos]->parametro);  
     /*probar al final, tener en cuanta que se hara un arreglo de struct tablero.*/}
 
-void ajuste_monedero(const struct casilla** T, struct jugador* J,int dinero){
+void ajuste_monedero( struct casilla** T, struct jugador* J,int dinero){
     J->monedero = J->monedero+dinero;
 
     /*if (J->monedero >= 500){
         funcion de fin del juego
     }*/}
 
-void carcel(const struct casilla** T, struct jugador* J,int vacia){
+void carcel( struct casilla** T, struct jugador* J,int vacia){
 
     J->preso=1;}
 
-void gratis(const struct casilla** T, struct jugador* J,int bool){
+void gratis( struct casilla** T, struct jugador* J,int bool){
     printf("capo ¿que haces descansando? El mundo sigue girando");}
 //struct tablero crear_tablero();
-const struct casilla* crear_tablero(){
-    struct casilla TABLERO[LARGO_TABLERO];
+struct casilla* crear_tablero(){
+    struct casilla *TABLERO= (struct casilla*) malloc(sizeof(struct casilla)*28);
     
         TABLERO[0].funcion   = gratis;
         TABLERO[0].parametro = 1;
@@ -157,14 +158,9 @@ const struct casilla* crear_tablero(){
     }
 int main(){
     struct jugador test_J = {0,100};
-    const struct casilla* tablero = crear_tablero();
+    struct casilla* tablero = crear_tablero();
 
-    mover(&tablero,&test_J,1);
-    printf("dinero: %d\n",test_J.monedero);
-    printf("pos: %d\n",test_J.pos);
-
-
-
+    mover(&tablero,&test_J,2);
     printf("valor almacenado: %d\n",test_J.pos);
     
 }
