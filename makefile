@@ -11,6 +11,9 @@ main: $(OBJS)
 main.o: casilla/casilla.hpp tablero/tablero.hpp jugador/jugador.hpp casilla/jailCasilla/jailCasilla.hpp casilla/moneyCasilla/moneyCasilla.hpp casilla/moveCasilla/moveCasilla.hpp main.cpp 
 	$(CC) $(CFLAGS) -c main.cpp
 
+#test.o: casilla/casilla.hpp tablero/tablero.hpp jugador/jugador.hpp casilla/jailCasilla/jailCasilla.hpp casilla/moneyCasilla/moneyCasilla.hpp casilla/moveCasilla/moveCasilla.hpp test.cpp 
+#	$(CC) $(CFLAGS) -c test.cpp
+
 jugador.o: jugador/jugador.cpp
 	$(CC) $(CFLAGS) -c jugador/jugador.cpp
 
@@ -30,4 +33,7 @@ moveCasilla.o: casilla/casilla.hpp casilla/moveCasilla/moveCasilla.cpp
 	$(CC) $(CFLAGS) -c casilla/moveCasilla/moveCasilla.cpp
 
 clean:
+	rm -f main $(OBJS) *.out
+
+clear:
 	rm -f main $(OBJS) *.out

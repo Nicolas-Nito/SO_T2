@@ -5,8 +5,9 @@
 
 class MoneyCasilla :  public Casilla{
     public:
-        MoneyCasilla(int parametro, string nombre) : Casilla(parametro, nombre){};
-        int action(Jugador *jugador);
+        MoneyCasilla(int parametro, string nombre, int type) : Casilla(parametro, nombre, type){};
+        ~MoneyCasilla(){};
+        int action(Jugador *jugador) override;
 };
 
 #endif

@@ -14,14 +14,14 @@ class Jugador{
         int monedero;
         int preso;
     public:
-        Jugador(int id);
+        Jugador(int _id);
         int getPos();
         int getMonedero();
         int getPreso();
         int getId();
-        void setPos(int pos);
-        void setMonedero(int monedero);
-        void setPreso(int preso);
+        void setPos(int _pos);
+        void setMonedero(int _monedero);
+        void setPreso(int _preso);
         void calculateMonedero(int value);
         bool rollTheDiceAndMove(); // Retorna un booleano para indicar si se dio una vuelta al tablero
 };

@@ -3,10 +3,10 @@
 #include "iostream"
 
 Jugador::Jugador(int _id){
-    pos = 0;
-    monedero = 100;
-    preso = NOT_JAILED;
-    id = _id;
+    this->pos = 0;
+    this->monedero = 100;
+    this->preso = NOT_JAILED;
+    this->id = _id;
 }
 
 int Jugador::getPos(){
@@ -22,31 +22,29 @@ int Jugador::getPreso(){
 }
 
 int Jugador::getId(){
-    return this->getId();
+    return this->id;
 }
 
-void Jugador::setPos(int pos){
-    this->pos = pos;
+void Jugador::setPos(int _pos){
+    this->pos = _pos;
 }
 
-void Jugador::setMonedero(int monedero){
-    this->monedero = monedero;
+void Jugador::setMonedero(int _monedero){
+    this->monedero = _monedero;
 }
 
-void Jugador::setPreso(int preso){
-    this->preso = preso;
+void Jugador::setPreso(int _preso){
+    this->preso = _preso;
 }
 
 bool Jugador::rollTheDiceAndMove(){
-    if(this->getId() == 1) // Player 1
+    /* if(this->getId() == 1) // Player 1
     {
-        int a ;
         std::cout<<"*Lanzar el dado*";
-        std::cin >> a;
-        std::cout<<"\n"; 
-    }
+        std::cin.ignore();
+    } */
     int diceRoll = (rand()%6) + 1;
-    std::cout << "Dado lanzado por el jugador " << this->getId() << ", resultado" << diceRoll << "\n";
+    std::cout << "Dado lanzado por el jugador " << this->getId() << ", resultado " << diceRoll << "\n";
     int newPos = diceRoll + this->getPos();
     if(newPos > MAXSIZE-1){
         newPos -= MAXSIZE;
@@ -59,5 +57,7 @@ bool Jugador::rollTheDiceAndMove(){
 }
 
 void Jugador::calculateMonedero(int value){
-    this->setMonedero(this->getMonedero() + value);
+    int setValue = this->getMonedero() + value;
+    if(setValue < 0) setValue = 0;
+    this->setMonedero(setValue);
 }

@@ -5,8 +5,9 @@
 
 class MoveCasilla :  public Casilla{
     public:
-        MoveCasilla(int parametro, string nombre) : Casilla(parametro, nombre){};
-        int action(Jugador *jugador);
+        MoveCasilla(int parametro, string nombre, int type) : Casilla(parametro, nombre, type){};
+        ~MoveCasilla() {};
+        int action(Jugador *jugador) override;
 };
 
 #endif

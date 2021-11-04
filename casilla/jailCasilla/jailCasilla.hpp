@@ -5,8 +5,9 @@
 
 class JailCasilla :  public Casilla{
     public:
-        JailCasilla(int parametro, string nombre) : Casilla(parametro, nombre){};
-        int action(Jugador *jugador);
+        JailCasilla(int parametro, string nombre, int type) : Casilla(parametro, nombre, type){};
+        ~JailCasilla(){};
+        int action(Jugador *jugador) override;
 };
 
 #endif

@@ -5,6 +5,9 @@
 
 #include "../jugador/jugador.hpp"
 #include "../casilla/casilla.hpp"
+#include "../casilla/jailCasilla/jailCasilla.hpp"
+#include "../casilla/moneyCasilla/moneyCasilla.hpp"
+#include "../casilla/moveCasilla/moveCasilla.hpp"
 
 /*La lista basada en array debe contar con : Tamaño maximo, tamaño actual, posicion curr, array lista.*/
 typedef Casilla tElemLista;
@@ -15,12 +18,11 @@ private:
     unsigned int maxsize;
     unsigned int listSize;
     unsigned int curr;
-    tElemLista* listArray;
+    tElemLista* listArray[MAXSIZE];
 public:
     Tablero(); //constructor
     ~Tablero();
-    void clear(); //reinicialización vacia
-    int append(tElemLista item); // al final
+    int append(int type, int value, string nombre); // al final
     void moveToStart();
     void moveToEnd();
     void prev();
@@ -30,7 +32,7 @@ public:
     int length();
     int currPos();
     void moveToPos(int pos);
-    tElemLista getValue();
+    tElemLista* getValueFrom(int pos);
 };
 
 #endif
